@@ -1,14 +1,16 @@
 package br.com.hexagonal_architecture.adapter.output;
 
-import br.com.hexagonal_architecture.port.output.PizzaServicePort;
+import br.com.hexagonal_architecture.domain.model.PizzaResponse;
+import br.com.hexagonal_architecture.ports.output.PizzaServicePort;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestTemplate;
 
 @Component
-public class PIzzaServiceAdapter implements PizzaServicePort {
+public class PizzaServiceAdapter implements PizzaServicePort {
 
     private final RestTemplate restTemplate;
     private final String pizzaServiceUrl;
@@ -19,12 +21,12 @@ public class PIzzaServiceAdapter implements PizzaServicePort {
     }
 
     @Override
-    public PizzaResponse createPizza(Pizza pizza){
+    public PizzaResponse getPizza(){
         HttpHeaders headers = new HttpHeaders();
         headers.set("Content-Type", "application/json");
 
-        HttpEntity<Pizza> request = new HttpEntity<>(pizza, headers);
-        ResponseEntity<PizzaResponse> response = restTempalte.postForEntity(pizzaServiceUrl, request, PizzaResponse.class);
+        HttpEntity request = new HttpEntity<>(headers);
+        ResponseEntity<PizzaResponse> response = restTemplate.postForEntity(pizzaServiceUrl, request, PizzaResponse.class);
 
         return response.getBody();
     }
