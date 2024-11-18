@@ -3,6 +3,7 @@ package br.com.hexagonal_architecture.infrastructure.http;
 import br.com.hexagonal_architecture.ports.output.HttpClient;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.*;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.*;
@@ -12,6 +13,9 @@ import org.springframework.web.client.*;
 public class RestTemplateHttpClient implements HttpClient {
     private static final Logger logger = LoggerFactory.getLogger(RestTemplateHttpClient.class);
     private final RestTemplate restTemplate;
+
+    @Value("${api.token}")
+    private String accessToken;
 
     public RestTemplateHttpClient(RestTemplate restTemplate) {
         this.restTemplate = restTemplate;
@@ -24,8 +28,8 @@ public class RestTemplateHttpClient implements HttpClient {
         try {
             HttpHeaders headers = new HttpHeaders();
             headers.set("Content-Type", "application/json");
+            headers.set("Authorization", "Bearer " + accessToken);
             HttpEntity<?> entity = new HttpEntity<>(headers);
-
             logger.debug("Headers configurados: {}", headers);
 
             long startTime = System.currentTimeMillis();
