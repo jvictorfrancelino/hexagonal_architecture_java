@@ -25,6 +25,6 @@ public class CustomerController {
     public ResponseEntity<Void> insert(@Valid @RequestBody CustomerRequest customerRequest) {
         var customer = customerMapper.toCustomer(customerRequest);
         insertCustomerInputPort.insert(customer, customerRequest.getZipCode());
-
+        return ResponseEntity.ok().build();
     }
 }

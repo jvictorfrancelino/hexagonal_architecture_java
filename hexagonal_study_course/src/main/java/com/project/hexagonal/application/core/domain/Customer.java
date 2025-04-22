@@ -6,10 +6,9 @@ public class Customer {
         this.isValidCpf = false;
     }
 
-    public Customer(String id, String street, String city, Address address, String cpf, Boolean isValidCpf) {
+    public Customer(String id, String name,Address address, String cpf, Boolean isValidCpf) {
         this.id = id;
-        this.street = street;
-        this.city = city;
+        this.name = name;
         this.address = address;
         this.cpf = cpf;
         this.isValidCpf = isValidCpf;
@@ -17,16 +16,13 @@ public class Customer {
 
     private String id;
 
-    private String street;
-
-    private String city;
+    private String name;
 
     private Address address;
 
     private String cpf;
 
     private Boolean isValidCpf;
-
 
     public String getId() {
         return id;
@@ -36,20 +32,12 @@ public class Customer {
         this.id = id;
     }
 
-    public String getStreet() {
-        return street;
+    public String getName() {
+        return name;
     }
 
-    public void setStreet(String street) {
-        this.street = street;
-    }
-
-    public String getCity() {
-        return city;
-    }
-
-    public void setCity(String city) {
-        this.city = city;
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Address getAddress() {
@@ -68,12 +56,13 @@ public class Customer {
         this.cpf = cpf;
     }
 
-    public Boolean getValidCpf() {
+    public Boolean getIsValidCpf() {
         return isValidCpf;
     }
 
-    public void setValidCpf(Boolean validCpf) {
-        isValidCpf = validCpf;
+    public void setIsValidCpf(Boolean isValidCpf) {
+        this.isValidCpf = isValidCpf;
     }
+
 }
 
