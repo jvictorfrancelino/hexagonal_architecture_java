@@ -25,6 +25,4 @@ public class InsertCustomerUseCase implements InsertCustomerInputPort {
         customer.setAddress(address);
         insertCustomerOutputPort.insert(customer);
     }
-
-
 }

@@ -1,10 +1,11 @@
-spring.application.name=hexagonal
+spring:
+  application:
+    name: hexagonal
+  data:
+    mongodb:
+      uri: mongodb://localhost:27017/hexagonal
+
 project:
   client:
     address:
-      url:http://localhost:8082/addresses
-
-spring:
-  data:
-    mongodb:
-      uri:mongodb://localhost:27017/hexagonal
+      url: http://localhost:8082/addresses
